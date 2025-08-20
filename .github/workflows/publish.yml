@@ -19,11 +19,14 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+    - name: Install dotnet-proj-info
+      run: dotnet tool install --global dotnet-proj-info
+
     - name: Extract NuGet Package Version
       id: extract_version
-      uses: jelfre/extract-nuget-package-version@1.1.0
-      with:
-        project_file: Ereoz.Abstractions/Ereoz.Abstractions.csproj
+      run: |
+        VERSION=$(dotnet-proj-info Ereoz.Abstractions/Ereoz.Abstractions.csproj --property Version)
+        echo "::set-output name=version::$VERSION"
 
     - name: Build
       run: dotnet build --configuration Release
