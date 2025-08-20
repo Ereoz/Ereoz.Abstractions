@@ -1,7 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Ereoz.Abstractions</PackageId>
+		<Version>0.0.1</Version>
+		<Authors>Ereoz</Authors>
+		<Description>Ereoz framework Interfaces.</Description>
+		<RepositoryUrl>https://github.com/Ereoz/Ereoz.Abstractions</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
 
 </Project>

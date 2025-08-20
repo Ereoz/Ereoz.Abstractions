@@ -1,0 +1,35 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0' # любая поддерживаемая версия SDK. Важно, чтобы она была >= вашей целевой версии
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Extract NuGet Package Version
+      id: extract_version
+      uses: jelfre/extract-nuget-package-version@1.1.0
+      with:
+        project_file: Ereoz.Abstractions/Ereoz.Abstractions.csproj
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Pack
+      run: dotnet pack --configuration Release -o .
+
+    - name: Push to GitHub Packages
+      run: dotnet nuget push *.nupkg --source "github" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
