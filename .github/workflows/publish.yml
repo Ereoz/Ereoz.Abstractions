@@ -16,17 +16,17 @@ jobs:
       with:
         dotnet-version: '9.0' # любая поддерживаемая версия SDK. Важно, чтобы она была >= вашей целевой версии
 
-    - name: Install dependencies
-      run: dotnet restore
+    #- name: Install dependencies
+    #  run: dotnet restore
 
-    - name: Install dotnet-proj-info
-      run: dotnet tool install --global dotnet-proj-info
+    #- name: Install dotnet-proj-info
+    #  run: dotnet tool install --global dotnet-proj-info
 
-    - name: Extract NuGet Package Version
-      id: extract_version
-      run: |
-        VERSION=$(dotnet-proj-info Ereoz.Abstractions/Ereoz.Abstractions.csproj --property Version)
-        echo "::set-output name=version::$VERSION"
+    #- name: Extract NuGet Package Version
+    #  id: extract_version
+    #  run: |
+    #    VERSION=$(dotnet-proj-info Ereoz.Abstractions/Ereoz.Abstractions.csproj --property Version)
+    #    echo "::set-output name=version::$VERSION"
 
     - name: Build
       run: dotnet build --configuration Release
