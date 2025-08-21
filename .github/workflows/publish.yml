@@ -7,13 +7,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-last
+    runs-on: windows-2022
     
     steps:
     - uses: actions/checkout@v3
     
-    - name: Print repository and tag info
-      run: Write-Output "Repository: myrep"
+    - name: Print message on Windows runner
+      run: echo "This is running on Windows"
       #echo "Repository: ${{ github.repository }}"
       #echo "Tag: ${GITHUB_REF#refs/tags/}"
       #echo "Commit SHA: ${{ github.sha }}"
