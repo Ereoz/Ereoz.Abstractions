@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Print repository and tag info
-      run: echo "Repository: myrep"
+      run: Write-Output "Repository: myrep"
       #echo "Repository: ${{ github.repository }}"
       #echo "Tag: ${GITHUB_REF#refs/tags/}"
       #echo "Commit SHA: ${{ github.sha }}"
