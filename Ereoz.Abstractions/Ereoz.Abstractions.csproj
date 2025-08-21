@@ -5,7 +5,6 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>Ereoz.Abstractions</PackageId>
 		<Version>0.0.1</Version>
-		<AssemblyVersion>0.0.1</AssemblyVersion>
 		<PackageVersion>0.0.1</PackageVersion>
 		<Title>Ereoz framework Interfaces</Title>
 		<Authors>Honlsoft</Authors>

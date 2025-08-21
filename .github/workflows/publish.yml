@@ -23,4 +23,6 @@ jobs:
     - name: pack nuget packages
       run: dotnet pack --output nupkgs --no-restore --no-build
     - name: upload nuget package
-      run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      env:
+        PACKAGE_NAME: ${{ format('Ereoz.Abstractions.{0}.nupkg', github.sha) }}
+      run: dotnet nuget push nupkgs/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
