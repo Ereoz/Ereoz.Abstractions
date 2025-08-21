@@ -33,4 +33,4 @@ jobs:
       env:
         PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
       #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} --api-key ${{ secrets.packageToken }} --source https://nuget.pkg.github.com/Ereoz/index.json --skip-duplicate
+      run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} --api-key ${{ secrets.GH_NUGET_API_KEY }} --source https://nuget.pkg.github.com/Ereoz/index.json --skip-duplicate
