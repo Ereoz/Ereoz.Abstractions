@@ -12,25 +12,31 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
+    - name: Print repository and tag info
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Tag: ${GITHUB_REF#refs/tags/}"
+          echo "Commit SHA: ${{ github.sha }}"
     
-    - name: Restore dependencies
-      run: dotnet restore
+    #- name: Setup .NET
+    #  uses: actions/setup-dotnet@v3
+    #  with:
+    #    dotnet-version: 6.0.x
     
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    #- name: Restore dependencies
+    #  run: dotnet restore
     
-    - name: Test
-      run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
+    #- name: Build
+    #  run: dotnet build --configuration Release --no-restore
     
-    - name: pack nuget packages
-      run: dotnet pack --output packages --no-restore --no-build
+    #- name: Test
+    #  run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
     
-    - name: upload nuget package
-      env:
-        PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
+    #- name: pack nuget packages
+    #  run: dotnet pack --output packages --no-restore --no-build
+    
+    #- name: upload nuget package
+    #  env:
+    #    PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
       #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} --api-key ${{ secrets.GH_NUGET_API_KEY }} --source https://nuget.pkg.github.com/Ereoz/index.json --skip-duplicate
+      #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} --api-key ${{ secrets.GH_NUGET_API_KEY }} --source https://nuget.pkg.github.com/Ereoz/index.json --skip-duplicate
