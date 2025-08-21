@@ -14,8 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Show tag name
-      run: echo "Repo name is ${{ github.event.repository.name }}"
+    - name: Show Repo Info
+      run: |
+      echo "Repo name is ${{ github.event.repository.name }}" |
+      echo "Sha is ${{ github.sha }}"
+      
       #echo "Repository: ${{ github.repository }}"
       #echo "Tag: ${GITHUB_REF#refs/tags/}"
       #echo "Commit SHA: ${{ github.sha }}"  
