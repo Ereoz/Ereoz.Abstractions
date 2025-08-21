@@ -8,21 +8,29 @@ on:
 jobs:
   build:
     runs-on: windows-2022
+    
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+    
     - name: Restore dependencies
       run: dotnet restore
+    
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    
     - name: Test
       run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
+    
     - name: pack nuget packages
-      run: dotnet pack --output nupkgs --no-restore --no-build
+      run: dotnet pack --output packages --no-restore --no-build
+    
     - name: upload nuget package
       env:
         PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
-      run: dotnet nuget push nupkgs/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/Ereoz/index.json
