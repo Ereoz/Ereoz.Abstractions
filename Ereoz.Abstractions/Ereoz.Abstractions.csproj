@@ -3,12 +3,16 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>Ereoz.Abstractions</PackageId>
-		<Version>0.0.1</Version>
-		<Authors>Ereoz</Authors>
-		<Description>Ereoz framework Interfaces.</Description>
-		<RepositoryUrl>https://github.com/Ereoz/Ereoz.Abstractions</RepositoryUrl>
+		<PackageId>Ereoz.Abstractions</PackageId>		
+		<Title>Ereoz framework Interfaces</Title>
+		<Authors>Honlsoft</Authors>
+		<Description>Ereoz framework Interfaces</Description>
+		<Copyright>Denis Plotnikov</Copyright>		
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Ereoz/Ereoz.Abstractions</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Ereoz/Ereoz.Abstractions</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 </Project>
