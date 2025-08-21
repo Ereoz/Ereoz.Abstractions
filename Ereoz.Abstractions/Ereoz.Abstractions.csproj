@@ -4,6 +4,7 @@
 		<TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>Ereoz.Abstractions</PackageId>
+		<Version>0.0.0</Version>
 		<PackageVersion>0.0.0</PackageVersion>
 		<Title>Ereoz framework Interfaces</Title>
 		<Authors>Honlsoft</Authors>
