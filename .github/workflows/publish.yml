@@ -1,9 +1,9 @@
 name: Publish NuGet Package
 
-on: [push]
-  #push:
-    #tags:
-    #  - 'v*.*.*'
+on:
+  push:
+    tags:
+      - 'v*.*.*'
 
 env:
   TAG_VERSION: ${{ github.ref_name }}
