@@ -23,31 +23,26 @@ jobs:
        $envFile = "$env:GITHUB_OUTPUT"
        "version=$versionNumber" | Out-File -Append $envFile
        Write-Host "Извлеченная версия: $versionNumber"
-
-    - name: Example of using the extracted version
-      run: |
-        echo "The version to publish is: ${{ steps.repo_info.outputs.version }}"
        
-    #- name: Setup .NET
-    #  uses: actions/setup-dotnet@v3
-    #  with:
-    #    dotnet-version: 6.0.x
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
     
-    #- name: Restore dependencies
-    #  run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
     
-    #- name: Build
-    #  run: dotnet build --configuration Release /p:Version=${TAG_VERSION#v} /p:NuGetVersion=${TAG_VERSION#v} --no-restore 
+    - name: Build
+      run: dotnet build --configuration Release /p:Version=${{ steps.repo_info.outputs.version }} --no-restore 
     
-    #- name: Test
-    #  run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
+    - name: Test
+      run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
     
-    #- name: pack nuget packages
-    #  run: dotnet pack --output packages /p:Version=${TAG_VERSION#v} --no-restore --no-build
+    - name: pack nuget packages
+      run: dotnet pack --output packages /p:Version=${{ steps.repo_info.outputs.version }} --no-restore --no-build
     
-    #- name: upload nuget package
-    #  run: dotnet nuget push packages/${{ github.event.repository.name }}.${TAG_VERSION#v} -k ${{ secrets.GH_NUGET_API_KEY }} -s https://nuget.pkg.github.com/Ereoz/index.json
-    #  env:
-    #    PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
+    - name: upload nuget package
+      env:
+        PACKAGE_NAME: ${{ github.event.repository.name }}.${{ steps.repo_info.outputs.version }}.nupkg
       #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} --api-key ${{ secrets.GH_NUGET_API_KEY }} --source https://nuget.pkg.github.com/Ereoz/index.json --skip-duplicate
+      run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.GH_NUGET_API_KEY }} -s https://nuget.pkg.github.com/Ereoz/index.json
