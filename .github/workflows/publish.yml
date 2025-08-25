@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - main
 
 jobs:
   build:
@@ -20,24 +18,25 @@ jobs:
        echo "Полный ref: ${{ github.ref }}"
        echo "Имя тега: ${{ github.ref_name }}"
     
-    #- name: Setup .NET
-    #  uses: actions/setup-dotnet@v3
-    #  with:
-    #    dotnet-version: 6.0.x
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
     
-    #- name: Restore dependencies
-    #  run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
     
-    #- name: Build
-    #  run: dotnet build --configuration Release --no-restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
     
-    #- name: Test
-    #  run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
+    - name: Test
+      run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
     
-    #- name: pack nuget packages
-    #  run: dotnet pack --output packages --no-restore --no-build
+    - name: pack nuget packages
+      run: dotnet pack --output packages --no-restore --no-build
     
-    #- name: upload nuget package
+    - name: upload nuget package
+      run: dotnet nuget push packages/${{ github.ref_name }} -k ${{ secrets.GH_NUGET_API_KEY }} -s https://nuget.pkg.github.com/Ereoz/index.json
     #  env:
     #    PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
       #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
