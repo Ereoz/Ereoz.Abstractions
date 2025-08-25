@@ -12,23 +12,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Show Repo Info
+    - name: RepoInfo
+      id: repo_info
       run: |
        echo "Repo name is ${{ github.event.repository.name }}"
        echo "Полный ref: ${{ github.ref }}"
        echo "Имя тега: ${{ github.ref_name }}"
-    
-    - name: Extract Version Number (PowerShell)
-      id: extract_version
-      run: |
-        $tagName = "${{ github.ref_name }}"
+       $tagName = "${{ github.ref_name }}"
         $versionNumber = $tagName.TrimStart('v')
         Write-Host "::set-output name=version::$versionNumber"
-        Write-Host "Extracted version: $versionNumber"
+        Write-Host "Извлеченная версия: $versionNumber"
 
     - name: Example of using the extracted version
       run: |
-        echo "The version to publish is: ${{ steps.extract_version.outputs.version }}"
+        echo "The version to publish is: ${{ steps.repo_info.outputs.version }}"
        
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v3
