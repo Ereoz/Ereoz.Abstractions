@@ -5,10 +5,6 @@ on:
     tags:
       - 'v*.*.*'
 
-env:
-  TAG_VERSION: ${{ github.ref_name }}
-  CUR_VERSION: ${{ github.ref_name }}.Replace('v', '')
-
 jobs:
   build:
     runs-on: windows-2022
@@ -21,8 +17,18 @@ jobs:
        echo "Repo name is ${{ github.event.repository.name }}"
        echo "Полный ref: ${{ github.ref }}"
        echo "Имя тега: ${{ github.ref_name }}"
-       echo "Имя тега: ${{ env.TAG_VERSION }}"
-       echo "Имя тега: ${{ env.CUR_VERSION }}"
+    
+    - name: Extract Version Number (PowerShell)
+      id: extract_version
+      run: |
+        $tagName = "${{ github.ref_name }}"
+        $versionNumber = $tagName.TrimStart('v')
+        Write-Host "::set-output name=version::$versionNumber"
+        Write-Host "Extracted version: $versionNumber"
+
+    - name: Example of using the extracted version
+      run: |
+        echo "The version to publish is: ${{ steps.extract_version.outputs.version }}"
        
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v3
