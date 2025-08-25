@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
 		<PackageId>Ereoz.Abstractions</PackageId>
-		<Title>Ereoz framework Interfaces</Title>
+		<Title>Ereoz Abstractions</Title>
 		<Authors>Ereoz</Authors>
 		<Description>Ereoz framework Interfaces</Description>
 		<Copyright>Denis Plotnikov</Copyright>		
