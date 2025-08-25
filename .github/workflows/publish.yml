@@ -1,18 +1,20 @@
 name: Publish NuGet Package
 
-on:
-  push:
-    tags:
-      - 'v*.*.*'
-      
+on: [push]
+  #push:
+    #tags:
+    #  - 'v*.*.*'
+
 env:
   TAG_VERSION: ${{ github.ref_name }}
+  CUR_VERSION: ${TAG_VERSION#v}
 
 jobs:
   build:
     runs-on: windows-2022
     
     steps:
+    - name: Checkout repository
     - uses: actions/checkout@v3
     
     - name: Show Repo Info
@@ -20,26 +22,28 @@ jobs:
        echo "Repo name is ${{ github.event.repository.name }}"
        echo "Полный ref: ${{ github.ref }}"
        echo "Имя тега: ${{ github.ref_name }}"
+       echo "Версия из тега: ${ env.TAG_VERSION }"
+       echo "Текущая версия: ${ env.CUR_VERSION }"
+       
+    #- name: Setup .NET
+    #  uses: actions/setup-dotnet@v3
+    #  with:
+    #    dotnet-version: 6.0.x
     
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
+    #- name: Restore dependencies
+    #  run: dotnet restore
     
-    - name: Restore dependencies
-      run: dotnet restore
+    #- name: Build
+    #  run: dotnet build --configuration Release /p:Version=${TAG_VERSION#v} /p:NuGetVersion=${TAG_VERSION#v} --no-restore 
     
-    - name: Build
-      run: dotnet build --configuration Release /p:Version=${TAG_VERSION#v} /p:NuGetVersion=${TAG_VERSION#v} --no-restore 
+    #- name: Test
+    #  run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
     
-    - name: Test
-      run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
+    #- name: pack nuget packages
+    #  run: dotnet pack --output packages /p:Version=${TAG_VERSION#v} --no-restore --no-build
     
-    - name: pack nuget packages
-      run: dotnet pack --output packages /p:Version=${TAG_VERSION#v} --no-restore --no-build
-    
-    - name: upload nuget package
-      run: dotnet nuget push packages/${{ github.event.repository.name }}.${TAG_VERSION#v} -k ${{ secrets.GH_NUGET_API_KEY }} -s https://nuget.pkg.github.com/Ereoz/index.json
+    #- name: upload nuget package
+    #  run: dotnet nuget push packages/${{ github.event.repository.name }}.${TAG_VERSION#v} -k ${{ secrets.GH_NUGET_API_KEY }} -s https://nuget.pkg.github.com/Ereoz/index.json
     #  env:
     #    PACKAGE_NAME: Ereoz.Abstractions.0.0.1.nupkg
       #run: dotnet nuget push packages/${{ env.PACKAGE_NAME }} -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
