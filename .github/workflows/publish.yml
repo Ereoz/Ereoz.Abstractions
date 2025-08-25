@@ -7,7 +7,7 @@ on:
 
 env:
   TAG_VERSION: ${{ github.ref_name }}
-  CUR_VERSION: ${TAG_VERSION#v}
+  CUR_VERSION: ${{ env.TAG_VERSION }}:1
 
 jobs:
   build:
