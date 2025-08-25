@@ -2,12 +2,12 @@
 
 namespace Ereoz.Abstractions.Serialization
 {
-    public interface ISerializeService<StringOrByteArray>
+    public interface ISerializeService<SerializedType>
     {
-        StringOrByteArray Serialize<T>(T objectForSerialization, bool formattingIndented = false);
+        SerializedType Serialize<T>(T objectForSerialization, bool formattingIndented = false);
 
-        T Deserialize<T>(StringOrByteArray serializedObject);
+        T Deserialize<T>(SerializedType serializedObject);
 
-        object Deserialize(Type targetType, StringOrByteArray serializedObject);
+        object Deserialize(Type targetType, SerializedType serializedObject);
     }
 }
