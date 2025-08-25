@@ -30,7 +30,7 @@ jobs:
       run: dotnet restore
     
     - name: Build
-      run: dotnet build --configuration Release /p:Version=${TAG_VERSION#v} --no-restore 
+      run: dotnet build --configuration Release /p:Version=${TAG_VERSION#v} /p:AssemblyVersion=${TAG_VERSION#v} --no-restore 
     
     - name: Test
       run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
