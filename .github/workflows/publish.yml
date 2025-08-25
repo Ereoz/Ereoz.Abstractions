@@ -19,9 +19,10 @@ jobs:
        echo "Полный ref: ${{ github.ref }}"
        echo "Имя тега: ${{ github.ref_name }}"
        $tagName = "${{ github.ref_name }}"
-        $versionNumber = $tagName.TrimStart('v')
-        Write-Host "::set-output name=version::$versionNumber"
-        Write-Host "Извлеченная версия: $versionNumber"
+       $versionNumber = $tagName.TrimStart('v')
+       $envFile = "$env:GITHUB_OUTPUT"
+       "version=$versionNumber" | Out-File -Append $envFile
+       Write-Host "Извлеченная версия: $versionNumber"
 
     - name: Example of using the extracted version
       run: |
