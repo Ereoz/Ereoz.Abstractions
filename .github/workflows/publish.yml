@@ -17,8 +17,10 @@ jobs:
        echo "Repo name is ${{ github.event.repository.name }}"
        echo "Полный ref: ${{ github.ref }}"
        echo "Имя тега: ${{ github.ref_name }}"
-       currVer="${{ github.ref_name }}"
-       echo "${currVer:1}"
+       VERSION=${GITHUB_REF#refs/tags/v}
+       echo "Версия без 'v': $VERSION"
+      env:
+          GITHUB_REF: ${{ github.ref }}
        
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v3
