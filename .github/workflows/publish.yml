@@ -20,9 +20,9 @@ jobs:
       run: |
        echo "Repo name is ${{ github.event.repository.name }}"
        echo "Полный ref: ${{ github.ref }}"
-       echo "Имя тега: ${{ github.ref_name#v }}"
-       echo "Версия из тега: ${ env.TAG_VERSION }"
-       echo "Текущая версия: ${ env.CUR_VERSION }"
+       echo "Имя тега: ${{ github.ref_name }}"
+       echo "Версия из тега: ${{ env.TAG_VERSION }}"
+       echo "Текущая версия: ${{ env.CUR_VERSION }}"
        
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v3
