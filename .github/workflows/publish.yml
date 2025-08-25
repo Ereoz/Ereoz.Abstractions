@@ -5,9 +5,6 @@ on:
     tags:
       - 'v*.*.*'
 
-env:
-  TAG_VERSION: ${{ github.ref_name }}
-
 jobs:
   build:
     runs-on: windows-2022
@@ -19,7 +16,9 @@ jobs:
       run: |
        echo "Repo name is ${{ github.event.repository.name }}"
        echo "Полный ref: ${{ github.ref }}"
-       echo "Имя тега: ${{ github.ref_name }:1}"
+       echo "Имя тега: ${{ github.ref_name }}"
+       currVer="${{ github.ref_name }}"
+       echo "${currVer:1}"
        
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v3
