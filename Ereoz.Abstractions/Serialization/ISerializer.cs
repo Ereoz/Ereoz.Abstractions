@@ -2,7 +2,7 @@
 
 namespace Ereoz.Abstractions.Serialization
 {
-    public interface ISerializator<SerializedType>
+    public interface ISerializer<SerializedType>
     {
         SerializedType Serialize<T>(T objectForSerialization, bool formattingIndented = false);
 
