@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard1.0;net40</TargetFrameworks>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageId>Ereoz.Abstractions</PackageId>
+		<Title>Abstractions</Title>
+		<Authors>Ereoz</Authors>
+		<Description>Contracts for all Ereoz services</Description>
+		<Copyright>Denis Plotnikov</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Ereoz/Ereoz.Abstractions</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Ereoz/Ereoz.Abstractions</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="."/>
+	</ItemGroup>
+
+</Project>
