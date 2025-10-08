@@ -19,7 +19,7 @@ namespace Ereoz.Abstractions.DI
 
         Service Resolve<Service>();
         Service Resolve<Service>(string name);
-        IEnumerable<Service> ResolveAllImplementationse<Service>();
+        IEnumerable<Service> ResolveAllImplementations<Service>();
 
         object Resolve(Type service);
         object Resolve(Type service, string name);        
