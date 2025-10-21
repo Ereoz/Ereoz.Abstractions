@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ereoz.Abstractions.DI
 {
-    public interface IDependencyInjectionContainer
+    public interface IContainer
     {
         IServiceInfo Register<Service>();
         IServiceInfo Register<Service>(Func<object> factory);

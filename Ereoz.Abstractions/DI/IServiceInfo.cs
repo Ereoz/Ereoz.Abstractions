@@ -5,7 +5,9 @@ namespace Ereoz.Abstractions.DI
     public interface IServiceInfo
     {
         Type ServiceType { get; }
-        object Resolve();
+        Func<object> Factory { get; }
+        bool IsSingletone { get; }
+        object SingletoneInstance { get; set; }
         void AsSingletone();
         void AsTransient();
     }
