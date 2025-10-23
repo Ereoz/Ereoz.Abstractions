@@ -9,6 +9,7 @@ namespace Ereoz.Abstractions.DI
         bool IsSingletone { get; }
         object SingletoneInstance { get; set; }
         void AsSingletone();
+        void AsSingletone(object instance);
         void AsTransient();
     }
 }
