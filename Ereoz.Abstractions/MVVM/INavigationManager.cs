@@ -13,5 +13,7 @@ namespace Ereoz.Abstractions.MVVM
         AsSingletoneHandler RegisterViewWithViewModel(Type view, Type viewModel);
 
         void AutoRegisterAllViewsWithViewModels();
+
+        T CreateMainWindow<T>();
     }
 }
